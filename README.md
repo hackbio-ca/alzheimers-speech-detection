@@ -1,6 +1,6 @@
-# demo-project
+# alzheimers-speech-detection
 
-A brief description of the project. Explain what it does and who it's for.
+Detecting Alzheimer’s Disease from Speech with Deep Learning
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
