@@ -1,3 +1,9 @@
+import Header from './Header.jsx'
+import Find from './Find.jsx'
+import Cards from './Cards.jsx'
+import Footer from './Footer.jsx'
+import About from './About.jsx'
+
 function App() {
   const handleClick = async () => {
     try {
@@ -12,10 +18,13 @@ function App() {
   };
 
   return (
-    <div>
-      <h1>React + Flask API Test</h1>
-      <button onClick={handleClick}>Fetch Message</button>
-    </div>
+    <>
+    <Header/>
+    <Find/>
+    <About/>
+    <Cards/>
+    <Footer/>
+    </>
   );
 }
 

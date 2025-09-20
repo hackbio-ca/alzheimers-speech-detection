@@ -1,0 +1,116 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+#header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    padding: 25px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 28px;
+    color: white;
+    background-color: #004e7a;  /* updated header color */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.nav-links button {
+    all: unset;
+    margin-left: 20px;
+    font-weight: 500;
+    font-size: 24px;
+    padding: 10px;
+    color: #004e7a;
+    background-color: white;
+}
+
+.nav-links button:hover {
+    background-color: #d9d9d9;
+    cursor: pointer;
+}
+
+#find {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 24px;
+    background-image: url('main.png');
+    background-size: cover;
+    background-position: center;
+}
+
+#find button {
+    all: unset;
+    padding: 10px 50px;
+    color: white;
+    background-color: #004e7a;
+    cursor: pointer;
+    text-align: center;
+}
+
+#find button:hover {
+    background-color:#00273d;
+    cursor: pointer;
+}
+
+#about {
+    scroll-margin-top: 100px;
+    padding: 100px;
+    font-size: 32px;
+    text-align: center;
+    color: black;
+    background-color: #d9d9d9;
+}
+
+#cards {
+    padding: 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 280px));
+    justify-content: center;
+    gap: 30px;
+    box-sizing: border-box;
+    background-color: #d9d9d9;
+
+    background-image: url('main2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#card {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    font-size: 22px;
+    color: black;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+#footer {
+    margin: 0;
+    padding: 60px 40px;
+    text-align: left;
+    font-size: 24px;
+    color: white;
+    background-color: #333333;
+    box-sizing: border-box;
+}
