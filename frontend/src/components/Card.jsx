@@ -1,8 +1,8 @@
-function Card() {
+function Card({ text }) {
     return (
     <>
     <div id="card">
-        Test
+        <p>{text}</p>
     </div>
     </>
     )

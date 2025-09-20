@@ -14,9 +14,9 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 28px;
-    color: white;
-    background-color: #004e7a;  /* updated header color */
+    font-size: 20px;
+    color: #004e7a;
+    background-color: white;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
 }
@@ -25,20 +25,21 @@ html, body {
     all: unset;
     margin-left: 20px;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 18px;
     padding: 10px;
-    color: #004e7a;
-    background-color: white;
+    color: white;
+    background-color: #004e7a;
     border-radius: 9999px;
 }
 
 .nav-links button:hover {
-    background-color: #d9d9d9;
+    background-color: #00273d;
     cursor: pointer;
 }
 
 #find {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -66,25 +67,37 @@ html, body {
 #about {
     scroll-margin-top: 100px;
     padding: 100px;
-    font-size: 24px;
+    font-size: 18px;
     text-align: center;
-    color: black;
+    color: #004e7a;
+    background-color: white;;
+}
+
+#cards-section {
+    padding-top: 50px;
+    padding-bottom: 100px;
+    padding-left: 100px;
+    padding-right: 100px;
     background-color: #d9d9d9;
+    background-image: url('main2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-align: center;
+}
+
+.cards-title {
+    margin-bottom: 40px;
+    font-size: 28px;
+    color: white;
 }
 
 #cards {
-    padding: 100px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 280px));
     justify-content: center;
     gap: 30px;
     box-sizing: border-box;
-    background-color: #d9d9d9;
-
-    background-image: url('main2.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
 #card {
@@ -92,27 +105,93 @@ html, body {
     width: 100%;
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     font-size: 18px;
-    color: black;
+    color: #004e7a;
     background-color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 8px;
-
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-#card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+#try {
+    padding: 100px;
+    font-size: 28px;
+    text-align: center;
+    color: #004e7a;
+    background-color: white;
 }
 
 #footer {
     margin: 0;
     padding: 60px 40px;
     text-align: left;
-    font-size: 18px;
+    font-size: 24px;
     color: white;
     background-color: #333333;
     box-sizing: border-box;
+}
+
+#problemStatement {
+    font-size: 32px;
+    color: white;
+}
+
+#tryOurSolution {
+    all: unset;
+    padding: 10px 50px;
+    color: white;
+    background-color: #004e7a;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 9999px;
+    font-size: 20px;
+}
+
+#findSideEffects {
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#sideEffectsForm {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 300px;
+    text-align: center;
+}
+
+#sideEffectsForm input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+#sideEffectsForm button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #004e7a;
+    color: white;
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+}
+
+#sideEffectsForm button:hover {
+    background-color: #00335a;
+}
+
+.result {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #004e7a;
 }
