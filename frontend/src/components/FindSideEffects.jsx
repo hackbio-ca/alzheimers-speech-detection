@@ -1,11 +1,45 @@
+import { useState } from "react";
+import Footer from "./Footer";
+
 function FindSideEffects() {
-    return (
+  const [input, setInput] = useState("");
+  const [result, setResult] = useState("");
+
+    const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+        const res = await fetch("http://localhost:5001/api/find", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query: input }),
+        });
+        const data = await res.json();
+        setResult(data.result);
+    } catch (err) {
+        console.error(err);
+        setResult("Error fetching results");
+    }
+    };
+
+  return (
     <>
-    <div>
-        Hello World!
-    </div>
+      <div id="findSideEffects">
+        <form id="sideEffectsForm" onSubmit={handleSubmit}>
+          <p>Find Side Effects</p>
+          <input
+            type="text"
+            placeholder="Enter value"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            required
+          />
+          <button type="submit">Submit</button>
+          {result && <p className="result">{result}</p>}
+        </form>
+      </div>
+      <Footer />
     </>
-    )
+  );
 }
 
 export default FindSideEffects;
