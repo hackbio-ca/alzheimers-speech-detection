@@ -30,13 +30,16 @@ function App() {
     Side Effects
     <nav className="nav-links">
       <button onClick={() => handleHomeClick()}>Home</button>
-      <button onClick={() => scrollToSection("about")}>About</button>
+      {/* Only show About button when on the Home page */}
+      {page === "home" && (
+        <button onClick={() => scrollToSection("about")}>About</button>
+      )}
       <button onClick={() => setPage("findsideeffects")}>Find Side Effects</button>
     </nav>
   </div>
-  
-  {page === "home" && <Home setPage={setPage}/>}
-  {page === "findsideeffects" && <FindSideEffects/>}
+
+  {page === "home" && <Home setPage={setPage} />}
+  {page === "findsideeffects" && <FindSideEffects />}
   </>
   );
 }
