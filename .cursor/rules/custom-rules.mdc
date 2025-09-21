@@ -1,5 +1,0 @@
----
-description: When using git always use concise but clear comments. Use Ubuntu (WSL) over Powershell.
-globs:
-alwaysApply: true
----
