@@ -30,6 +30,31 @@ except ImportError as e:
 app = Flask(__name__)
 CORS(app)
 
+def find_model_file(model_name="best_fast_model.pth"):
+    """
+    Find the model file in common locations
+    """
+    # Get the directory where this script is located
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    
+    # Possible locations for the model file
+    possible_paths = [
+        os.path.join(script_dir, model_name),  # Same directory as server
+        os.path.join(script_dir, "..", model_name),  # Parent directory
+        os.path.join(script_dir, "..", "..", model_name),  # Two levels up
+        model_name,  # Current working directory
+    ]
+    
+    for path in possible_paths:
+        if os.path.exists(path):
+            print(f"Found model file at: {os.path.abspath(path)}")
+            return path
+    
+    # If not found, return the default path
+    default_path = os.path.join(script_dir, "..", model_name)
+    print(f"Model file not found in common locations. Using default: {os.path.abspath(default_path)}")
+    return default_path
+
 # GO enrichment analysis functions
 def get_go_terms(gene_list, species='human'):
     """
@@ -255,14 +280,19 @@ def generate_p_values_from_predictions(predictions):
     
     return p_values
 
-def predict_drug_gene_expression(drug_name, model_path="best_fast_model.pth"):
+def predict_drug_gene_expression(drug_name, model_path=None):
     """
     Predict gene expression for a drug using the trained model
     """
     if not DRUG_PREDICTION_AVAILABLE:
         raise ImportError("Drug prediction modules not available")
     
+    # Find the model file if not specified
+    if model_path is None:
+        model_path = find_model_file()
+    
     print(f"Predicting gene expression for drug: {drug_name}")
+    print(f"Using model: {model_path}")
     
     # Get QSAR features for the drug
     print("Getting QSAR features...")
@@ -323,7 +353,7 @@ def analyze_drug():
             return jsonify({'error': 'No drug name provided'}), 400
         
         drug_name = data['drug_name']
-        model_path = data.get('model_path', 'best_fast_model.pth')
+        model_path = data.get('model_path', None)  # Will use find_model_file() if None
         
         # Predict gene expression for the drug
         gene_expression_data, actual_drug_name = predict_drug_gene_expression(drug_name, model_path)
@@ -509,6 +539,21 @@ def available_drugs():
         'note': 'These are example drugs. The system can analyze any drug that has PubChem data.'
     })
 
+@app.route("/api/model_status")
+def model_status():
+    """
+    Check the status of the ML model file
+    """
+    model_path = find_model_file()
+    model_exists = os.path.exists(model_path)
+    
+    return jsonify({
+        'model_path': os.path.abspath(model_path),
+        'model_exists': model_exists,
+        'drug_prediction_available': DRUG_PREDICTION_AVAILABLE,
+        'status': 'ready' if (model_exists and DRUG_PREDICTION_AVAILABLE) else 'not_ready'
+    })
+
 @app.route("/")
 def index():
     """
@@ -546,8 +591,11 @@ def index():
                     <li><strong>POST /api/go_enrichment</strong> - GO enrichment only</li>
                     <li><strong>GET /api/example_data</strong> - Get example data</li>
                     <li><strong>GET /api/available_drugs</strong> - Get list of example drugs</li>
+                    <li><strong>GET /api/model_status</strong> - Check ML model status</li>
                 </ul>
             </div>
+            
+            <div id="model-status" class="info"></div>
             
             <div class="info">
                 <h3>🔬 Drug Analysis (NEW!)</h3>
@@ -573,6 +621,39 @@ def index():
 
         <script>
             let currentData = null;
+
+            // Check model status on page load
+            async function checkModelStatus() {
+                try {
+                    const response = await fetch('/api/model_status');
+                    const status = await response.json();
+                    
+                    const statusDiv = document.getElementById('model-status');
+                    if (status.status === 'ready') {
+                        statusDiv.innerHTML = `
+                            <h3>✅ System Status: Ready</h3>
+                            <p>Model file: ${status.model_path}</p>
+                            <p>Drug prediction: Available</p>
+                        `;
+                        statusDiv.style.background = '#d4edda';
+                        statusDiv.style.color = '#155724';
+                    } else {
+                        statusDiv.innerHTML = `
+                            <h3>❌ System Status: Not Ready</h3>
+                            <p>Model file: ${status.model_path}</p>
+                            <p>Model exists: ${status.model_exists ? 'Yes' : 'No'}</p>
+                            <p>Drug prediction: ${status.drug_prediction_available ? 'Available' : 'Not Available'}</p>
+                        `;
+                        statusDiv.style.background = '#f8d7da';
+                        statusDiv.style.color = '#721c24';
+                    }
+                } catch (error) {
+                    console.error('Error checking model status:', error);
+                }
+            }
+
+            // Check status when page loads
+            window.onload = checkModelStatus;
 
             async function analyzeDrug() {
                 const drugName = document.getElementById('drugName').value.trim();
