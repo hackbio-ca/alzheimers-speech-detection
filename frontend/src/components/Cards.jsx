@@ -3,7 +3,7 @@ import Card from './Card.jsx';
 function Cards() {
   return (
     <div id="cards-section">
-      <p className="cards-title">Our Solution Features</p>
+      <p className="cards-title"><b>Our Solution Features</b></p>
       <div id="cards">
         <Card text="Machine Learning"/>
         <Card text="Big Data"/>

@@ -5,10 +5,8 @@ import { useState } from "react";
 function App() {
     const handleHomeClick = () => {
     if (page === "home") {
-      // already on home -> scroll to top
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
-      // on another page -> go back to home
       setPage("home");
     }
   };
@@ -16,7 +14,7 @@ function App() {
    const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      const yOffset = -80; // adjust for sticky header if needed
+      const yOffset = -80;
       const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
       window.scrollTo({ top: y, behavior: "smooth" });
     }
@@ -30,11 +28,12 @@ function App() {
     Side Effects
     <nav className="nav-links">
       <button onClick={() => handleHomeClick()}>Home</button>
-      {/* Only show About button when on the Home page */}
       {page === "home" && (
-        <button onClick={() => scrollToSection("about")}>About</button>
+        <>
+          <button onClick={() => scrollToSection("about")}>About</button>
+          <button class="specialButton" onClick={() => setPage("findsideeffects")}>Find Side Effects</button>
+        </>
       )}
-      <button onClick={() => setPage("findsideeffects")}>Find Side Effects</button>
     </nav>
   </div>
 
