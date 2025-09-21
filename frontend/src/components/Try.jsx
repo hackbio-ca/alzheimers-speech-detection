@@ -2,7 +2,7 @@ function Try({setPage}) {
     return (
     <>
     <div id="try">
-        <p>Try It Out:</p>
+        <p><b>Try It Out:</b></p>
         <button id="tryOurSolution" onClick={() => setPage("findsideeffects")}>Find Side Effects</button>
     </div>
     </>

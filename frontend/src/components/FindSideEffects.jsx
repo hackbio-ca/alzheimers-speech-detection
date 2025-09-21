@@ -21,11 +21,11 @@ function FindSideEffects() {
     }
     };
 
-  return (
+    return (
     <>
       <div id="findSideEffects">
         <form id="sideEffectsForm" onSubmit={handleSubmit}>
-          <p>Find Side Effects</p>
+          <h1>Find Side Effects</h1>
           <input
             type="text"
             placeholder="Enter value"
@@ -33,7 +33,7 @@ function FindSideEffects() {
             onChange={(e) => setInput(e.target.value)}
             required
           />
-          <button type="submit">Submit</button>
+          <button id="submission" type="submit">Submit</button>
           {result && <p className="result">{result}</p>}
         </form>
       </div>
