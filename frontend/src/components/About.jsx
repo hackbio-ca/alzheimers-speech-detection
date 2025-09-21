@@ -15,7 +15,7 @@ const About = () => {
     }, 15000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [texts.length]);
 
   return (
     <div id="about">
