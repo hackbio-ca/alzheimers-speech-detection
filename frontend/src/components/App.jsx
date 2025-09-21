@@ -25,13 +25,13 @@ function App() {
   return (
   <>
   <div id="header">
-    Side Effects
+    <b id="title">Adversis</b>
     <nav className="nav-links">
       <button onClick={() => handleHomeClick()}>Home</button>
       {page === "home" && (
         <>
           <button onClick={() => scrollToSection("about")}>About</button>
-          <button class="specialButton" onClick={() => setPage("findsideeffects")}>Find Side Effects</button>
+          <button class="specialButton" onClick={() => setPage("findsideeffects")}>Find Effects</button>
         </>
       )}
     </nav>

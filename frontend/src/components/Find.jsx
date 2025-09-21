@@ -11,7 +11,7 @@ function Find() {
     return (
     <>
     <div id="find">
-        <p id="problemStatement"><b>How will my drug affect gene expression?</b></p>
+        <p id="problemStatement"><b>How will my drug affect the genome?</b></p>
         <div id="findButtons">
             <button id="bodyButton" onClick={() => scrollToSection("about")}>Learn more</button>
         </div>

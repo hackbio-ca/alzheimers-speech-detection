@@ -3,7 +3,7 @@ function Try({setPage}) {
     <>
     <div id="try">
         <p><b>Try It Out:</b></p>
-        <button id="tryOurSolution" onClick={() => setPage("findsideeffects")}>Find Side Effects</button>
+        <button id="tryOurSolution" onClick={() => setPage("findsideeffects")}>Find Effects</button>
     </div>
     </>
     )

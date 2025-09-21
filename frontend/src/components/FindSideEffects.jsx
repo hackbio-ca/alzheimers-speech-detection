@@ -25,10 +25,10 @@ function FindSideEffects() {
     <>
       <div id="findSideEffects">
         <form id="sideEffectsForm" onSubmit={handleSubmit}>
-          <h1>Find Side Effects</h1>
+          <h1>Find Effects</h1>
           <input
             type="text"
-            placeholder="Enter value"
+            placeholder="Enter drug candidate (e.g. Aspirin)"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             required
