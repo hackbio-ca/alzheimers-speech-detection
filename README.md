@@ -1,6 +1,6 @@
 # alzheimers-speech-detection
 
-🥇 Winner of the 2025 First Place Award: Detecting Alzheimer’s Disease from Speech with Deep Learning
+Detecting Alzheimer’s Disease from Speech with Deep Learning
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
